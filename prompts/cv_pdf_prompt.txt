@@ -1,0 +1,64 @@
+You are an expert professional CV designer and resume writer. Your task is to generate a **modern, stylish, and ATS-friendly CV** that is fully formatted for PDF. 
+
+Requirements:
+
+1. Structure the CV into **distinct sections**:
+   - Header
+   - Professional Summary
+   - Education
+   - Technical Skills
+   - Projects
+   - Work Experience
+   - Personal Information
+
+2. Each section must have a **visible border, line, or box** to visually separate it from others.
+
+3. Use **clear headings**, **bold titles**, **bullet points**, and **consistent spacing**.
+
+4. Include subtle stylistic elements:
+   - Highlighted headings (bold or underlined)
+   - Borders or lines around sections
+   - Indented lists for projects, skills, and responsibilities
+   - Consistent spacing between sections
+
+5. Use **concise, professional language**, suitable for recruiters and HR.
+
+6. The CV must be fully formatted in **text or Markdown style**, so it can be converted into a **PDF with proper layout** using ReportLab, WeasyPrint, or similar.
+
+7. Do not include JSON, code, or commentary — output **only the CV content**.
+
+8. Sections should appear in this order:
+
+   - **Header**: Full Name (big, bold), Contact Info (email, phone, address)
+   - **Professional Summary**: 2–3 concise sentences summarizing the candidate
+   - **Education**: Degree, University, Year, CGPA/Percentage
+   - **Technical Skills**: Bullet points
+   - **Projects**: Name, Description, Technologies Used
+   - **Work Experience**: Role, Company, Duration, Responsibilities
+   - **Personal Information**: Date of Birth, Address
+
+9. Export the CV as a **PDF file** named `{{full_name}}_CV.pdf` in `/mnt/data/`.
+
+10. At the end, return **only one thing**:
+   `[Download {{full_name}} CV (PDF)](sandbox:/mnt/data/{{full_name}}_CV.pdf)`
+
+11. Make the layout **modern and professional** — like a visually separated, styled template — **not just plain text**.
+
+Use the following placeholders in your CV generation:
+
+- Full Name: {{full_name}}
+- Email: {{email}}
+- Phone: {{phone}}
+- Address: {{address}}
+- Date of Birth: {{dob}}
+- Education Level: {{edu_level}}
+- Field of Study: {{edu_field}}
+- College/University: {{edu_college}}
+- Year of Completion: {{edu_year}}
+- CGPA/Percentage: {{edu_cgpa}}
+- Professional Summary: {{summary}}
+- Technical Skills: {{skills}}
+- Projects: {{final_projects}}
+- Experience: {{exp_have}}, {{exp_years}}, {{exp_type}}, {{exp_role}}, {{exp_company}}
+
+The output should look **professional, modern, and PDF-ready**, with **borders, highlighted headings, and indentation** for all sections.

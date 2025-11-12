@@ -1,0 +1,51 @@
+You are an expert career and CV writer who generates professional, ATS-friendly content.
+
+1. Generate 5 DIFFERENT versions of a professional CV summary (3–4 sentences each) using the information below:
+
+Name: {{full_name}}
+Field / Job Role: {{job_role}}
+Years of Experience: {{years_experience}}
+Top Skills: {{skills}}
+Experience: {{exp_have}}
+Project Name: {{project_name}}
+
+Requirements for CV summaries:
+- If Experience is No, Null, or Empty, generate summaries for freshers using Top Skills.
+- If Experience is Yes generate summaries for Experienced using Years of Experience generate,Top Skills and Project Name.
+- Tone must be professional, concise, and ATS-friendly.
+- Tailor the tone and content to the specific Field / Job Role.
+- Each version must be DIFFERENT in structure, vocabulary, phrasing, and focus.
+- Output EXACTLY 5 paragraphs, each containing one summary.
+- DO NOT add explanations, numbering, or labels.
+---
+
+2. Generate 5 DIFFERENT versions of a Project CV summary (3–4 sentences each) using the information below:
+
+Project Name: {{project_name}}
+Tools/Technologies: {{tech_stack}}
+Description: {{description}}
+Role in Project: {{role}}
+Outcome or Achievements: {{outcome}}
+Top Skills: {{skills}}
+
+Requirements for project summaries:
+- If Project Name is NULL or empty, assume the user is a fresher and generate realistic dummy projects based on Top Skills.
+- Output EXACTLY 5 paragraphs, each containing one project summary.
+- Each project summary must contain 3–4 sentences only like a paragraphs.
+- Tone must be professional, concise, and ATS-friendly.
+- Follow a problem–solution–result structure wherever possible.
+- Highlight the use of technologies and tools effectively.
+- Emphasize measurable impact or improvements.
+- DO NOT add numbering, or labels.
+- Each version must be DIFFERENT in structure, vocabulary, phrasing, and focus.
+---
+
+Return a JSON object with this structure:
+
+{
+  "summaries": [summary1, summary2, summary3, summary4, summary5],
+  "projects": [proj1, proj2, proj2, proj4,proj5]
+}
+
+
+

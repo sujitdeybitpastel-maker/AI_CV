@@ -1,0 +1,51 @@
+project_root/
+│
+├── backend/                   # ✅ All Django backend code
+│   ├── manage.py
+│   ├── cvproject/            # Django project
+│   │   ├── __init__.py
+│   │   ├── settings.py
+│   │   ├── urls.py
+│   │   ├── wsgi.py
+│   │   └── asgi.py
+│   │
+│   ├── cvapp/                # ✅ Your CV application
+│   │   ├── __init__.py
+│   │   ├── models.py
+│   │   ├── views.py
+│   │   ├── urls.py
+│   │   ├── serializers.py
+│   │   ├── admin.py
+│   │   ├── prompts/          # ✅ AI PROMPTS ARE HERE
+│   │   │    ├── summary_prompt.txt
+│   │   │    ├── experience_prompt.txt
+│   │   │    ├── projects_prompt.txt
+│   │   │    └── skills_prompt.txt
+│   │   ├── ai/               # ✅ AI API HANDLERS
+│   │   │    ├── openai_client.py
+│   │   │    ├── gemini_client.py
+│   │   │    ├── claude_client.py
+│   │   │    └── generate_cv_service.py
+│   │   └── templates/        # ✅ Django templates
+│   │        └── cvapp/
+│   │            └── index.html   # The Stepper Form HTML
+│   │
+│   └── static/               # ✅ ALL FRONTEND FILES HERE
+│       ├── css/
+│       │   └── style.css
+│       ├── js/
+│       │   └── app.js
+│       └── images/
+│           └── (optional)
+│
+├── frontend/                 # ✅ OPTIONAL: If using React/NextJS later
+│   └── (empty for now)
+│
+├── env/                      # ✅ .env or environment config
+│   └── .env
+│
+├── media/                    # ✅ User uploaded photos
+│
+├── requirements.txt          # Django + DRF + AI SDKs
+├── Procfile                  # For Render
+└── README.md

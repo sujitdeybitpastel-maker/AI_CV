@@ -1,0 +1,365 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI CV Builder</title>
+  <link href="/static/assets/css/style.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <div class="container">
+    <h2 class="text-center mb-4">CV Builder</h2>
+
+    <div class="stepper">
+      <div class="step active" data-step="1">Basic Info</div>
+      <div class="step" data-step="2">Education</div>
+      <div class="step" data-step="3">Skills</div>
+      <div class="step" data-step="4">Projects</div>
+      <div class="step" data-step="5">Work</div>
+      <div class="step" data-step="6">Summary</div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-5 bg-white p-4 rounded shadow">
+        <form id="cvForm" method="POST" action="{% url 'cv_maker' %}" enctype="multipart/form-data">
+          {% csrf_token %}
+
+          <!-- ✅ STEP 1 -->
+          <div class="step-content" id="step-1">
+            <h4>Basic Information</h4>
+
+            <div class="mb-3">
+              <label>Full Name *</label>
+              <input type="text" id="full_name" name="full_name" class="form-control" required>
+            </div>
+
+            <div class="row mb-3">
+              <div class="col">
+                <label>Email *</label>
+                <input type="email" id="email" name="email" class="form-control" required>
+              </div>
+              <div class="col">
+                <label>Phone *</label>
+                <input type="text" id="phone" name="phone" class="form-control" required maxlength="12">
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label>Address *</label>
+              <input type="text" id="address" name="address" class="form-control" required>
+            </div>
+
+            <div class="col">
+              <label>Date of Birth *</label>
+              <input type="date" id="dob" name="dob" class="form-control" required>
+            </div>
+
+            <div class="col">
+              <label>Gender *</label>
+              <select id="gender" name="gender" class="form-control" required>
+                <option value="">Select</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Others</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label>Photo</label>
+              <input type="file" id="photo" name="photo" class="form-control" accept="image/*">
+            </div>
+
+            <button type="button" class="btn btn-primary w-100 next-btn">Next</button>
+          </div>
+
+          <!-- STEP 2 -->
+          <div class="step-content d-none" id="step-2">
+            <h4>Education Details</h4>
+
+            <div class="mb-3">
+              <label>Highest Education *</label>
+              <select id="edu_level" name="edu_level" class="form-control" required>
+                <option value="">Select</option>
+                <option>High School</option>
+                <option>Diploma</option>
+                <option>Bachelor's Degree</option>
+                <option>Master's Degree</option>
+                <option>PhD</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label>Field of Study *</label>
+              <select id="edu_field" name="edu_field" class="form-control" required>
+                <option value="" selected disabled>Select your field</option>
+                <option value="Accounting">Accounting</option>
+                <option value="Agriculture">Agriculture</option>
+                <option value="Architecture">Architecture</option>
+                <option value="Arts">Arts</option>
+                <option value="Biology">Biology</option>
+                <option value="Business Administration">Business Administration</option>
+                <option value="Chemistry">Chemistry</option>
+                <option value="Civil Engineering">Civil Engineering</option>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Criminology">Criminology</option>
+                <option value="Data Science">Data Science</option>
+                <option value="Dentistry">Dentistry</option>
+                <option value="Economics">Economics</option>
+                <option value="Education">Education</option>
+                <option value="Electrical Engineering">Electrical Engineering</option>
+                <option value="Environmental Science">Environmental Science</option>
+                <option value="Finance">Finance</option>
+                <option value="Graphic Design">Graphic Design</option>
+                <option value="Health Sciences">Health Sciences</option>
+                <option value="History">History</option>
+                <option value="Hospitality Management">Hospitality Management</option>
+                <option value="Human Resources">Human Resources</option>
+                <option value="Information Technology">Information Technology</option>
+                <option value="Law">Law</option>
+                <option value="Management">Management</option>
+                <option value="Marketing">Marketing</option>
+                <option value="Mathematics">Mathematics</option>
+                <option value="Mechanical Engineering">Mechanical Engineering</option>
+                <option value="Medicine">Medicine</option>
+                <option value="Nursing">Nursing</option>
+                <option value="Pharmacy">Pharmacy</option>
+                <option value="Physics">Physics</option>
+                <option value="Political Science">Political Science</option>
+                <option value="Psychology">Psychology</option>
+                <option value="Sociology">Sociology</option>
+                <option value="Software Engineering">Software Engineering</option>
+                <option value="Statistics">Statistics</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label>College / University *</label>
+              <input type="text" id="edu_college" name="edu_college" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+              <label>Passing Year *</label>
+              <input type="month" id="edu_year" name="edu_year" class="form-control" required>
+            </div>
+
+            <div class="mb-3">
+              <label>Grade / CGPA</label>
+              <input type="text" id="edu_cgpa" name="edu_cgpa" class="form-control">
+            </div>
+
+            <button type="button" class="btn btn-secondary w-100 mt-3 back-btn">Back</button>
+            <button type="button" class="btn btn-primary w-100 mt-2 next-btn">Next</button>
+          </div>
+
+          <!-- STEP 3 -->
+          <div class="step-content d-none" id="step-3">
+            <h4>Skills</h4>
+            <label>Skills * Ctrl+Left for Multi Select</label>
+            <select id="skills" name="skills[]" class="form-control" multiple required>
+              <option value="Python">Python</option>
+              <option value="Java">Java</option>
+              <option value="JavaScript">JavaScript</option>
+              <option value="TypeScript">TypeScript</option>
+              <option value="C">C</option>
+              <option value="C++">C++</option>
+              <option value="C#">C#</option>
+              <option value="PHP">PHP</option>
+              <option value="Go">Go</option>
+              <option value="Ruby">Ruby</option>
+              <option value="Kotlin">Kotlin</option>
+              <option value="Swift">Swift</option> <!-- Web Development -->
+              <option value="HTML">HTML</option>
+              <option value="CSS">CSS</option>
+              <option value="Bootstrap">Bootstrap</option>
+              <option value="React">React</option>
+              <option value="Vue.js">Vue.js</option>
+              <option value="Angular">Angular</option>
+              <option value="Node.js">Node.js</option>
+              <option value="Express.js">Express.js</option> <!-- Databases -->
+              <option value="MySQL">MySQL</option>
+              <option value="PostgreSQL">PostgreSQL</option>
+              <option value="MongoDB">MongoDB</option>
+              <option value="SQLite">SQLite</option>
+              <option value="Oracle">Oracle</option>
+              <option value="SQL Server">SQL Server</option> <!-- Cloud -->
+              <option value="AWS">AWS</option>
+              <option value="Azure">Azure</option>
+              <option value="Google Cloud">Google Cloud</option> <!-- DevOps -->
+              <option value="Git">Git</option>
+              <option value="GitHub">GitHub</option>
+              <option value="Docker">Docker</option>
+              <option value="Kubernetes">Kubernetes</option>
+              <option value="CI/CD">CI/CD</option>
+              <option value="Linux">Linux</option> <!-- Data & AI -->
+              <option value="SQL">SQL</option>
+              <option value="Data Analysis">Data Analysis</option>
+              <option value="Machine Learning">Machine Learning</option>
+              <option value="Deep Learning">Deep Learning</option>
+              <option value="TensorFlow">TensorFlow</option>
+              <option value="PyTorch">PyTorch</option>
+              <option value="Pandas">Pandas</option>
+              <option value="NumPy">NumPy</option>
+              <option value="Power BI">Power BI</option>
+              <option value="Tableau">Tableau</option> <!-- UI/UX -->
+              <option value="Figma">Figma</option>
+              <option value="Adobe XD">Adobe XD</option> <!-- Soft Skills -->
+              <option value="Communication">Communication</option>
+              <option value="Teamwork">Teamwork</option>
+              <option value="Leadership">Leadership</option>
+              <option value="Problem Solving">Problem Solving</option>
+              <option value="Time Management">Time Management</option>
+              <option value="Critical Thinking">Critical Thinking</option> <!-- Other -->
+              <option value="Project Management">Project Management</option>
+              <option value="Agile">Agile</option>
+              <option value="Scrum">Scrum</option>
+              <option value="Digital Marketing">Digital Marketing</option>
+            </select>
+
+            <button type="button" class="btn btn-secondary w-100 mt-3 back-btn">Back</button>
+            <button type="button" class="btn btn-primary w-100 mt-2 next-btn">Next</button>
+          </div>
+
+          <!-- STEP 4 -->
+          <div class="step-content d-none" id="step-4">
+            <h4>Projects</h4>
+            <textarea id="projects" name="projects" class="form-control" rows="4"
+            placeholder="Describe your past projects here. If you don't have any, don't worry-I’ll suggest some ideas based on your skills. Just Click Next Button "></textarea>
+
+            <button type="button" class="btn btn-secondary w-100 mt-3 back-btn">Back</button>
+            <button type="button" class="btn btn-primary w-100 mt-2 next-btn">Next</button>
+          </div>
+
+          <!-- STEP 5 -->
+          <div class="step-content d-none" id="step-5">
+            <h4>Work Experience</h4>
+
+            <div class="mb-3">
+              <label>Do you have work experience?</label>
+              <select id="exp_have" name="exp_have" class="form-control" required>
+                <option value="">Select</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label>Years of Experience *</label>
+              <select id="exp_years" name="exp_years" class="form-control" required>
+                <option value="">Select</option>
+                <option value="0-1 Year">0-1 Year</option>
+                <option value="1-2 Years">1–2 Years</option>
+                <option value="2-3 Years">2–3 Years</option>
+                <option value="3-5 Years">3–5 Years</option>
+                <option value="5+ Years">5+ Years</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label>Work Type *</label>
+              <select id="exp_type" name="exp_type" class="form-control" required>
+                <option value="">Select</option>
+                <option>Internship</option>
+                <option>Full-Time</option>
+                <option>Part-Time</option>
+                <option>Freelance</option>
+                <option>Contract</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label>Your Role *</label>
+              <select id="exp_role" name="exp_role" class="form-control" required>
+                <option value="">Select</option>
+                <option>Software Developer</option>
+                <option>Web Developer</option>
+                <option>Data Analyst</option>
+                <option>UI/UX Designer</option>
+                <option>Project Manager</option>
+                <option>QA Tester</option>
+                <option>Support Engineer</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label>Company Name *</label>
+              <input type="text" id="exp_company" name="exp_company" class="form-control" required>
+            </div>
+
+            <button type="button" class="btn btn-secondary w-100 mt-3 back-btn">Back</button>
+            <button type="button" class="btn btn-primary w-100 mt-2 next-btn">Next</button>
+          </div>
+
+          <!-- STEP 6 — AI SUMMARY SECTION -->
+          <div class="step-content d-none" id="step-6">
+            <h4>Generated Summary</h4>
+
+            <!-- Loader -->
+            <div id="loaderBox" class="d-none text-center mt-4">
+              <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;"></div>
+              <p class="mt-2 fw-semibold">Generating Summary with ...</p>
+            </div>
+
+            <!-- SUMMARY AI SECTION -->
+            <div id="summarySuggestions" class="d-none mt-4">
+              <h5>Select Your Summary</h5>
+
+              <div id="summaryOptions"></div>
+
+              <label class="mt-3 fw-semibold">Selected Summary</label>
+              <textarea id="summary" name="summary" class="form-control" rows="4"
+                placeholder="Your selected summary will appear here..." required></textarea>
+            </div>
+
+            <hr class="my-4">
+
+            <!-- PROJECTS AI SECTION -->
+            <div id="projectLoader" class="d-none text-center mt-3">
+              <div class="spinner-border text-info" style="width: 2.5rem; height: 2.5rem;"></div>
+              <p class="mt-2">Generating Project Details...</p>
+            </div>
+
+            <div id="projectSuggestions" class="d-none mt-4">
+              <h5>Select Your Project Description</h5>
+
+              <div id="projectOptions"></div>
+
+              <label class="mt-3 fw-semibold">Selected Project Description</label>
+              <textarea id="final_projects" name="final_projects" class="form-control" rows="4"
+                placeholder="Your selected project description will appear here..." required></textarea>
+            </div>
+
+
+            <button type="button" class="btn btn-secondary w-100 mt-3 back-btn">Back</button>
+            <button type="submit" class="btn btn-success w-100 mt-3">Generate Preview</button>
+          </div>
+
+        </form>
+      </div>
+
+      <!-- CV PREVIEW (Right Side) -->
+      <div class="col-md-7">
+        <div class="cv-preview" id="cvPreview">
+          <p class="text-muted">Your CV preview will appear here…</p>
+        </div>
+        <button class="btn btn-success w-100 mt-3 d-none" id="downloadPdf">Download PDF</button>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="/static/assets/js/app.js"></script>
+
+</body>
+
+</html>
