@@ -147,4 +147,5 @@ TEMPLATES = [
     },
 ]
 
-SITE_URL = "http://127.0.0.1:8000"
+# SITE_URL = "http://127.0.0.1:8000"
+SITE_URL = "https://ai-cv-l86y.onrender.com"
